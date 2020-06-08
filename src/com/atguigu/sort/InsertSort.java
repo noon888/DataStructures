@@ -1,7 +1,6 @@
 package com.atguigu.sort;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * @Author: Administrator
@@ -10,27 +9,20 @@ import java.util.List;
 public class InsertSort {
     public static void main(String[] args) {
         int[] arr = {101, 34, 119, 1, -1, 90, 123};
-        List<Integer> integers = insertSort(arr);
-        System.out.println(integers.toString());
+        insertSort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
-    private static List<Integer> insertSort(int[] arr) {
-        List<Integer> list = new ArrayList<>();
-        list.add(arr[0]);
-        boolean flag;
-        for (int i=1; i<arr.length; i++) {
-            flag = false;
-            for (int j=list.size()-1; j>=0; j--) {
-                if (arr[i] > list.get(j)) {
-                    flag = true;
-                    list.add(j, arr[i]);
-                    break;
-                }
+    private static void insertSort(int[] arr) {
+        int insertVal, insertIndex;
+        for (int i=1;i<arr.length;i++) {
+            insertVal = arr[i];
+            insertIndex = i;
+            while (insertIndex > 0 && insertVal < arr[insertIndex-1]) {
+                arr[insertIndex] = arr[insertIndex-1];
+                insertIndex--;
             }
-            if (!flag) {
-                list.add(0, arr[i]);
-            }
+            arr[insertIndex] = insertVal;
         }
-        return list;
     }
 }
