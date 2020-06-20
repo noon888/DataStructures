@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class BinarySearch {
     public static void main(String[] args) {
-        int[] arr = {1,8,1000,1000,1000,1000,10,89,1234};
+        int[] arr = {1,8,1000,1000,1000,1000,1001,1002,1234};
         List<Integer> list = binarySearch(arr, 0, arr.length-1, 1000);
         System.out.println(list);
     }
