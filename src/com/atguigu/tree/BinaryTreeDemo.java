@@ -22,12 +22,14 @@ public class BinaryTreeDemo {
         BinaryTree binaryTree = new BinaryTree(root);
         binaryTree.preOrder();
         System.out.println();
-        binaryTree.midOrder();
-        System.out.println();
-        binaryTree.postOrder();
+//        binaryTree.midOrder();
+//        System.out.println();
+//        binaryTree.postOrder();
 //        System.out.println(binaryTree.preSearch(5));
 //        System.out.println(binaryTree.midSearch(4));
-        System.out.println(binaryTree.postSearch(5));
+//        System.out.println(binaryTree.postSearch(5));
+        binaryTree.delNode(6);
+        binaryTree.preOrder();
     }
 }
 class BinaryTree {
@@ -65,6 +67,18 @@ class BinaryTree {
 
     public Emp postSearch(int id) {
         return root.postSearch(id);
+    }
+
+    public void delNode(int id) {
+        if (Objects.nonNull(root)) {
+            if (root.getId() == id) {
+                root = null;
+            } else {
+                root.delNode(id);
+            }
+        } else {
+            System.out.println("null tree");
+        }
     }
 }
 
@@ -115,6 +129,10 @@ class Emp {
 
     public void setRight(Emp right) {
         this.right = right;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -180,6 +198,23 @@ class Emp {
             return this;
         }
         return null;
+    }
+
+    public void delNode(int id) {
+        if (Objects.nonNull(this.left)) {
+            if (this.left.getId() == id) {
+                this.left = null;
+                return;
+            }
+            this.left.delNode(id);
+        }
+        if (Objects.nonNull(this.right)) {
+            if (this.right.getId() == id) {
+                this.right = null;
+                return;
+            }
+            this.right.delNode(id);
+        }
     }
 }
 
