@@ -21,8 +21,9 @@ public class ThreadedBinaryTreeDemo {
         node3.setLeft(node6);
         ThreadedBinaryTree threadedBinaryTree = new ThreadedBinaryTree(root);
         threadedBinaryTree.threadedBinaryTree();
-        System.out.println(node5.getLeft());
-        System.out.println(node5.getRight());
+//        System.out.println(node5.getLeft());
+//        System.out.println(node5.getRight());
+        threadedBinaryTree.threadBinaryTreeOrder();
     }
 }
 
@@ -94,6 +95,21 @@ class ThreadedBinaryTree {
             }
         } else {
             System.out.println("null tree");
+        }
+    }
+
+    public void threadBinaryTreeOrder() {
+        HeroNode node = root;
+        while (Objects.nonNull(node)) {
+            while (node.getLeftType() == 0) {
+                node = node.getLeft();
+            }
+            System.out.println(node);
+            while (node.getRightType() == 1) {
+                node = node.getRight();
+                System.out.println(node);
+            }
+            node = node.getRight();
         }
     }
 }
